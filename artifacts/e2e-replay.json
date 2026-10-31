@@ -1,0 +1,2004 @@
+{
+  "schema": 1,
+  "seed": 1847,
+  "round_id": "970fb592bf9f41cea40f7e29a9b8230a",
+  "allow_changes": true,
+  "commands": [
+    {
+      "op": "control",
+      "action": "start"
+    },
+    {
+      "op": "move",
+      "dx": 1,
+      "dy": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "control",
+      "action": "pause"
+    },
+    {
+      "op": "control",
+      "action": "resume"
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": "lava",
+      "votes": 1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "control",
+      "action": "freeze"
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "control",
+      "action": "freeze"
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 0,
+      "dy": -1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 0,
+      "dy": -1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 1,
+      "dy": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 0,
+      "dy": -1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 1,
+      "dy": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 1,
+      "dy": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 1,
+      "dy": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 1,
+      "dy": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 1,
+      "dy": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 1,
+      "dy": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 1,
+      "dy": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 1,
+      "dy": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 1,
+      "dy": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 0,
+      "dy": -1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 1,
+      "dy": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 0,
+      "dy": -1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 1,
+      "dy": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 1,
+      "dy": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 1,
+      "dy": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 1,
+      "dy": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 1,
+      "dy": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 1,
+      "dy": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 1,
+      "dy": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 0,
+      "dy": -1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 0,
+      "dy": -1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 0,
+      "dy": -1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 0,
+      "dy": -1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 0,
+      "dy": -1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 0,
+      "dy": -1
+    }
+  ],
+  "audit": [
+    {
+      "id": "970fb592bf9f41cea40f7e29a9b8230a:1",
+      "window": 1,
+      "kind": "lava",
+      "targets": [
+        [
+          8,
+          13
+        ],
+        [
+          9,
+          13
+        ],
+        [
+          8,
+          14
+        ]
+      ],
+      "accepted": true,
+      "reason": "Safe route preserved. World mutation committed.",
+      "previous_version": 153,
+      "resulting_version": 154,
+      "timestamp": 15,
+      "protocol": [
+        "PROPOSED",
+        "VALIDATING",
+        "ACCEPTED",
+        "APPLIED"
+      ]
+    }
+  ],
+  "final_vote_counts": {
+    "lava": 0,
+    "wall": 0,
+    "bridge": 0
+  },
+  "digest": "0fdb2d468b9155688b279688acb861a45e11a682b97ca7ac06bba063bbeda357"
+}

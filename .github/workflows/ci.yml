@@ -1,0 +1,48 @@
+name: CrowdForge quality gates
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - run: npm ci
+      - run: pip install -r requirements.txt
+      - run: python -m pytest -q
+      - run: npm test
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - name: Start server
+        run: python scripts/serve.py > /tmp/crowdforge-server.log 2>&1 &
+      - name: Await health
+        run: python scripts/wait_for_server.py
+      - run: npm run test:e2e
+      - run: python scripts/replay.py artifacts/e2e-replay.json
+      - run: python benchmarks/run.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: verification-evidence
+          path: |
+            artifacts/
+            benchmarks/results.json
+            test-results/
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t crowdforge:test .
+      - run: docker run -d --name crowdforge -p 8000:8000 crowdforge:test
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - run: python scripts/wait_for_server.py
+      - run: docker stop crowdforge

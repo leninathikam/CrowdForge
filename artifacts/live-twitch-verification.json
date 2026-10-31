@@ -1,0 +1,18 @@
+{
+  "source": "Observed Twitch chat and CrowdForge UI in the principal Codex session before the October 31 continuation",
+  "account": "leninathikam",
+  "application": "CrowdForge-Lenin-2026",
+  "callback": "http://localhost:8000/auth/twitch/callback",
+  "connection": "authenticated EventSub chat connected",
+  "mode": "live",
+  "seed": 1847,
+  "command": "!lava",
+  "counted_votes": 1,
+  "mutation": "lava",
+  "mutation_accepted": true,
+  "changed_tiles": 3,
+  "round_time_seconds": 15,
+  "chaos_score": 30,
+  "visible_confirmation": "LAVA FORGED — Safe route preserved. World mutation committed.",
+  "limits": "One human-authorized broadcaster test vote, not multiple independent viewers. Chat was real, not the simulation adapter. The paused round's raw replay was not exported before the interrupted continuation reset the local process; this file records observations, not a fabricated replay. Public deployment, OBS recording, token expiry and long-duration reconnect remain separate checks."
+}

@@ -1,0 +1,9 @@
+{
+  "base": "http://127.0.0.1:8001",
+  "samples": 30,
+  "post_to_snapshot_ms_median": 105.94,
+  "post_to_snapshot_ms_p95": 445.21,
+  "reconnect_to_first_snapshot_ms": 15.19,
+  "synchronized_votes": 30,
+  "limits": "Loopback, synthetic votes, one observer; excludes Twitch delivery, DOM paint, public internet, OBS and multi-viewer load."
+}

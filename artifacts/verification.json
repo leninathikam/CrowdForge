@@ -1,0 +1,26 @@
+{
+  "recorded_at_utc": "2026-10-31T15:24:52.207147+00:00",
+  "python": {
+    "passed": 162,
+    "warnings": 1,
+    "elapsed_seconds": 33.82
+  },
+  "vitest": {
+    "passed": 8
+  },
+  "playwright": {
+    "startTime": "2026-10-31T15:17:28.323Z",
+    "duration": 126015.565,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "production_build": "passed",
+  "typescript_no_unused_locals": "passed",
+  "production_npm_audit_known_advisories": 0,
+  "client_secret_scan": "no source/build/evidence matches; .env ignored",
+  "live_twitch": "one authorized real broadcaster !lava vote applied validated mutation; observational record in live-twitch-verification.json",
+  "public_deployment_url": null,
+  "docker_runtime": "not yet verified on this workstation"
+}

@@ -1,0 +1,11 @@
+{
+  "frames": 120,
+  "duration_ms": 2050,
+  "effective_frames_per_second": 58.54,
+  "frame_interval_ms_median": 16.7,
+  "frame_interval_ms_p95": 16.8,
+  "visibility": "visible",
+  "viewport": "1920x1080",
+  "browser": "Playwright headless Chromium",
+  "limits": "120 requestAnimationFrame intervals while rendering an offline round on one workstation. Not a GPU frame profiler, OBS test, live Twitch load test or long-duration soak."
+}
