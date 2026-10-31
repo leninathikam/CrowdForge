@@ -1,0 +1,61 @@
+{
+  "seed": 93017,
+  "scenarios": 3000,
+  "python": "3.14.3",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "method": "Independent identical snapshots and proposals; lava is excluded from safe reachability. Timings cover copy/validation, not rendering or network.",
+  "unrestricted": {
+    "successful_mutations": 3000,
+    "rejected_mutations": 0,
+    "invalid_mutations_accepted": 1820,
+    "unreachable_exit_states": 694,
+    "stability_errors": 0,
+    "latency_ms_median": 0.0027,
+    "latency_ms_p95": 0.0073,
+    "latency_ms_max": 0.0533
+  },
+  "crowdforge": {
+    "successful_mutations": 1180,
+    "rejected_mutations": 1820,
+    "invalid_mutations_accepted": 0,
+    "unreachable_exit_states": 0,
+    "stability_errors": 0,
+    "latency_ms_median": 0.0153,
+    "latency_ms_p95": 0.5551,
+    "latency_ms_max": 5.7166
+  },
+  "vote_workloads": [
+    {
+      "events": 1000,
+      "accepted": 1000,
+      "limited": 0,
+      "elapsed_seconds": 0.0276,
+      "events_per_second": 36167,
+      "python_heap_peak_bytes": 285050
+    },
+    {
+      "events": 5000,
+      "accepted": 5000,
+      "limited": 0,
+      "elapsed_seconds": 0.1293,
+      "events_per_second": 38663,
+      "python_heap_peak_bytes": 1313530
+    },
+    {
+      "events": 20000,
+      "accepted": 20000,
+      "limited": 0,
+      "elapsed_seconds": 0.4731,
+      "events_per_second": 42276,
+      "python_heap_peak_bytes": 5280322
+    },
+    {
+      "events": 50000,
+      "accepted": 20000,
+      "limited": 30000,
+      "elapsed_seconds": 0.9947,
+      "events_per_second": 50266,
+      "python_heap_peak_bytes": 5280523
+    }
+  ]
+}
