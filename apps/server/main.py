@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 import secrets
 import time
+import sqlite3
 from urllib.parse import urlencode
 
 import httpx
@@ -16,7 +17,7 @@ from fastapi.responses import FileResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict, Field
 
-from .engine import Game
+from .engine import Game, replay_round
 from .logging_utils import TransportLogFilter
 from .storage import RoundStore
 from .twitch import TwitchConnection, TwitchFailure
@@ -54,17 +55,31 @@ class Session:
     action_refill: float = field(default_factory=time.monotonic)
     live_eligible_after: float = field(default_factory=time.time)
     persisted_audits: int = 0
+    snapshot_sequence: int = 0
+    persistence_status: str = "not saved"
 
     def snapshot(self):
+        self.snapshot_sequence += 1
         state = self.game.state()
+        samples = sorted(self.game.validation_ms)
+        state.update(snapshot_sequence=self.snapshot_sequence, diagnostics={
+            "validation_samples": len(samples), "validation_ms_last": self.game.validation_ms[-1] if samples else None,
+            "validation_ms_p95": samples[min(len(samples) - 1, int(len(samples) * .95))] if samples else None,
+            "vote_receipts": self.game.vote_receipts, "twitch": self.twitch.metrics if self.twitch else None,
+            "persistence": self.persistence_status, "rules": self.game.rules})
         state.update(mode=self.mode, twitch=self.twitch_status, twitch_configured=bool(CLIENT_ID and CLIENT_SECRET), twitch_redirect_uri=REDIRECT_URI)
         return state
 
 
 def checkpoint(key: str, session: Session):
     if store:
-        store.save(key, session.game, {"mode": session.mode, "twitch_connected": session.twitch_status["state"] == "connected", "channel": session.twitch_status["channel"]})
-        session.persisted_audits = len(session.game.audit)
+        try:
+            store.save(key, session.game, {"mode": session.mode, "twitch_connected": session.twitch_status["state"] == "connected", "channel": session.twitch_status["channel"]})
+            session.persisted_audits = len(session.game.audit)
+            session.persistence_status = "saved"
+        except sqlite3.Error:
+            session.persistence_status = "save failed; export replay before leaving"
+            logging.getLogger("crowdforge").warning("Round checkpoint unavailable")
 
 
 async def ticker():
@@ -194,8 +209,7 @@ async def act(key: str, body: Action, request: Request):
     if body.action == "move":
         game.move(body.dx, body.dy)
     elif body.action == "reset":
-        if store:
-            store.save(key + ":" + secrets.token_hex(4), game)
+        checkpoint(key + ":" + secrets.token_hex(4), session)
         session.game = Game(game.seed, game.allow_changes)
         session.saved = False
         session.persisted_audits = 0
@@ -218,8 +232,7 @@ async def act(key: str, body: Action, request: Request):
             session.twitch = None
         session.mode = "simulation"
         session.twitch_status.update(state="disconnected", channel="", detail="Simulation Mode — Twitch disconnected.")
-        if game.window:
-            game.window.votes.clear()
+        game.restart_vote()
     elif not game.control(body.action):
         raise HTTPException(409, "That control is unavailable in the current round state.")
     if body.action in ("pause", "integrity_probe"):
@@ -230,6 +243,21 @@ async def act(key: str, body: Action, request: Request):
 @app.get("/api/sessions/{key}/replay")
 async def export_replay(key: str, request: Request):
     return owner_session(key, request).game.replay()
+
+
+@app.get("/api/sessions/{key}/proof")
+async def verify_replay(key: str, request: Request):
+    game = owner_session(key, request).game
+    if game.phase == "running":
+        raise HTTPException(409, "Pause or finish the round to verify its replay.")
+    record = game.replay()
+    started = time.perf_counter_ns()
+    reconstructed = replay_round(record)
+    digest = reconstructed.digest()
+    return {"matches": digest == record["digest"], "digest": record["digest"], "reconstructed_digest": digest,
+            "audit_matches": reconstructed.audit == game.audit, "commands": len(record["commands"]),
+            "verification_ms": (time.perf_counter_ns() - started) / 1e6,
+            "round_id": game.round_id, "version": game.version}
 
 
 @app.websocket("/api/sessions/{key}/ws")
@@ -309,10 +337,7 @@ async def auth_callback(request: Request, state: str = "", code: str = "", error
             session.mode = "live"
             session.live_eligible_after = time.time()
             # Prevent synthetic votes from carrying into the first live vote.
-            if session.game.window:
-                from .voting import VoteWindow
-                game = session.game
-                game.window = VoteWindow(game.window.number + 1, game.elapsed, game.elapsed + 15, game.allow_changes)
+            session.game.restart_vote()
             session.twitch_status.update(state="connecting", detail="Authorised. Connecting to Twitch EventSub…")
             connection.task = asyncio.create_task(connection.run())
         except (TwitchFailure, httpx.HTTPError, ValueError, KeyError) as failure:

@@ -115,3 +115,34 @@ def test_single_use_oauth_state_bound_to_browser(client, monkeypatch):
     assert client.get(f"/api/auth/callback?state={state}&error=access_denied", follow_redirects=False).status_code == 303
     assert client.get(f"/api/auth/callback?state={state}&error=access_denied").status_code == 400
     assert main.sessions[data["id"]].twitch_status["state"] == "error"
+
+
+def test_proof_is_owner_only_and_snapshot_order_survives_reset(client):
+    data = create(client)
+    key = data["id"]
+    url = f"/api/sessions/{key}"
+    client.post(url + "/action", json={"action": "start"})
+    assert client.get(url + "/proof").status_code == 409
+    client.post(url + "/action", json={"action": "disconnect"})
+    paused = client.post(url + "/action", json={"action": "pause"}).json()
+    proof = client.get(url + "/proof").json()
+    assert proof["matches"] and proof["audit_matches"]
+    reset = client.post(url + "/action", json={"action": "reset"}).json()
+    assert reset["snapshot_sequence"] > paused["snapshot_sequence"]
+    assert reset["round_id"] != paused["round_id"]
+    assert reset["version"] == 0
+    client.cookies.clear()
+    assert client.get(url + "/proof?token=" + data["overlay_token"]).status_code == 403
+
+
+def test_checkpoint_failure_is_visible_without_crashing_round(client, monkeypatch):
+    data = create(client)
+    session = main.sessions[data["id"]]
+    def fail(*args, **kwargs):
+        raise sqlite3.OperationalError("disk unavailable")
+    monkeypatch.setattr(main.store, "save", fail)
+    main.checkpoint(data["id"], session)
+    assert "save failed" in session.snapshot()["diagnostics"]["persistence"]
+    assert session.game.control("start")
+    session.game.tick(.1)
+    assert session.game.elapsed == .1

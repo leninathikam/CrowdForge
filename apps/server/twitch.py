@@ -38,6 +38,8 @@ class TwitchConnection:
         self.user_id = ""
         self.subscription_id: str | None = None
         self.seen: OrderedDict[str, float] = OrderedDict()
+        self.metrics = {"received": 0, "delivered": 0, "duplicates": 0, "stale": 0, "limited": 0, "reconnects": 0,
+                        "last_received_at": None}
 
     async def validate_token(self):
         async with self._refresh_lock:
@@ -89,7 +91,8 @@ class TwitchConnection:
         readers: dict = {}
         active = None
         try:
-            active = await connect(EVENTSUB_URL, max_size=65536, max_queue=32, open_timeout=15)
+            # Twitch permits pong replies, but not unsolicited client ping frames.
+            active = await connect(EVENTSUB_URL, max_size=65536, max_queue=32, open_timeout=15, ping_interval=None)
             welcome = json.loads(await asyncio.wait_for(active.recv(), 15))
             if welcome.get("metadata", {}).get("message_type") != "session_welcome":
                 raise TwitchFailure("Unexpected Twitch welcome message.")
@@ -119,23 +122,29 @@ class TwitchConnection:
                         continue
                     if event.get("broadcaster_user_id") != self.user_id:
                         continue
+                    self.metrics["received"] += 1
+                    self.metrics["last_received_at"] = datetime.now(timezone.utc).isoformat()
                     # Use transport timestamp plus chat message ID for window membership and retries.
                     stamp = datetime.fromisoformat(meta["message_timestamp"].replace("Z", "+00:00")).timestamp()
                     if abs(time.time() - stamp) > 60:
+                        self.metrics["stale"] += 1
                         continue
                     message_id = event.get("message_id", "")
                     while self.seen and time.time() - next(iter(self.seen.values())) > 65:
                         self.seen.popitem(last=False)
                     if not message_id or message_id in self.seen or len(self.seen) >= 50000:
+                        self.metrics["duplicates" if message_id in self.seen else "limited"] += 1
                         continue
                     self.seen[message_id] = time.time()
+                    self.metrics["delivered"] += 1
                     self.on_message(event.get("chatter_user_id", ""), event.get("message_id", ""), event.get("message", {}).get("text", ""), stamp)
                 elif kind == "session_reconnect":
+                    self.metrics["reconnects"] += 1
                     url = packet["payload"]["session"]["reconnect_url"]
                     if not valid_reconnect_url(url):
                         raise TwitchFailure("Twitch supplied an invalid reconnect endpoint.")
                     self.status.update(state="reconnecting", detail="Migrating Twitch connection…")
-                    new = await connect(url, max_size=65536, max_queue=32, open_timeout=15)
+                    new = await connect(url, max_size=65536, max_queue=32, open_timeout=15, ping_interval=None)
                     try:
                         message = json.loads(await asyncio.wait_for(new.recv(), 15))
                         if message.get("metadata", {}).get("message_type") != "session_welcome":

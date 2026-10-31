@@ -2,6 +2,7 @@
 import hashlib
 import json
 import uuid
+import time
 
 from .voting import VoteWindow
 from .world import HEIGHT, WIDTH, LAVA, WALL, Mutation, generate, path, select_target, validate
@@ -11,7 +12,8 @@ VOTE_SECONDS = 15.0
 
 
 class Game:
-    def __init__(self, seed: int = 1847, allow_changes: bool = True, round_id: str | None = None):
+    def __init__(self, seed: int = 1847, allow_changes: bool = True, round_id: str | None = None, rules: int = 2):
+        self.rules = rules
         self.round_id = round_id or uuid.uuid4().hex
         self.seed = seed
         self.allow_changes = allow_changes
@@ -32,6 +34,8 @@ class Game:
         self.rejected = 0
         self.chaos = 0
         self.frozen = False
+        self.validation_ms: list[float] = []
+        self.vote_receipts = {"accepted": 0, "ignored": 0}
         self.note("system", "Arena forged. Find the cyan portal. Chat reshapes your route.")
 
     def note(self, kind: str, text: str):
@@ -82,9 +86,13 @@ class Game:
     def mutate(self, proposal: Mutation, source: int, record: bool = True) -> dict:
         if record:
             self.commands.append({"op": "mutation", "proposal": proposal.model_dump(), "source": source})
-        result = validate(self.grid, self.player, self.exit, proposal)
+        started = time.perf_counter_ns()
+        result = validate(self.grid, self.player, self.exit, proposal,
+                          ROUND_SECONDS - self.elapsed if self.rules >= 2 else None, self.rules)
+        self.validation_ms = (self.validation_ms + [(time.perf_counter_ns() - started) / 1e6])[-200:]
         before = self.version
         route_before = len(path(self.grid, self.player, self.exit))
+        original_tiles = [(x, y, self.grid[y][x]) for x, y in proposal.targets] if result.accepted else []
         if result.accepted:
             self.grid = result.grid
             self.version += 1
@@ -97,15 +105,30 @@ class Game:
                  "targets": proposal.targets, "accepted": result.accepted, "reason": result.reason,
                  "previous_version": before, "resulting_version": self.version, "timestamp": round(self.elapsed, 3),
                  "protocol": ["PROPOSED", "VALIDATING", "ACCEPTED", "APPLIED"] if result.accepted else ["PROPOSED", "VALIDATING", "REJECTED"]}
+        if self.rules >= 2:
+            event["metrics"] = result.metrics
+            event["changes"] = [{"x": x, "y": y, "before": old, "after": self.grid[y][x]}
+                                for x, y, old in original_tiles] if result.accepted else []
         self.audit.append(event)
         self.note(proposal.kind if result.accepted else "rejected", f"{proposal.kind.title()} {'applied' if result.accepted else 'blocked'}. {result.reason}")
         return event
 
     def cast(self, user: str, message: str, text: str, sent: float | None = None) -> bool:
         if self.phase != "running" or self.frozen or not self.window:
+            self.vote_receipts["ignored"] += 1
             return False
         sent = self.elapsed if sent is None else sent
-        return self.window.cast(user, message, text, sent, self.elapsed)
+        accepted = self.window.cast(user, message, text, sent, self.elapsed)
+        self.vote_receipts["accepted" if accepted else "ignored"] += 1
+        return accepted
+
+    def restart_vote(self, record: bool = True):
+        """Mode changes are replay inputs, including windows opened during pause."""
+        if record:
+            self.commands.append({"op": "restart_vote"})
+        if self.window:
+            self.window = VoteWindow(self.window.number + 1, self.elapsed, self.elapsed + VOTE_SECONDS, self.allow_changes)
+        self.version += 1
 
     def tick(self, dt: float, record: bool = True):
         if self.phase != "running":
@@ -133,7 +156,8 @@ class Game:
         self.total_votes += count
         winner = self.window.winner() if winner_override is None else winner_override
         if winner and not self.frozen:
-            proposal = select_target(self.grid, self.player, self.exit, winner, self.seed + self.window.number * 7919)
+            proposal = select_target(self.grid, self.player, self.exit, winner, self.seed + self.window.number * 7919,
+                                     ROUND_SECONDS - self.elapsed if self.rules >= 2 else None, self.rules)
             self.mutate(proposal, self.window.number, record=False)
         elif not self.frozen:
             self.note("system", "No votes this window. The world holds steady.")
@@ -141,7 +165,7 @@ class Game:
 
     def state(self) -> dict:
         counts = self.window.counts() if self.window else {"lava": 0, "wall": 0, "bridge": 0}
-        return {"schema": 1, "version": self.version, "seed": self.seed, "grid": self.grid, "player": self.player,
+        return {"schema": 1, "round_id": self.round_id, "version": self.version, "seed": self.seed, "grid": self.grid, "player": self.player,
                 "exit": self.exit, "health": round(self.health, 1), "elapsed": self.elapsed,
                 "remaining": round(max(0, ROUND_SECONDS - self.elapsed), 1), "phase": self.phase,
                 "vote": {"number": self.window.number if self.window else 1, "counts": counts,
@@ -153,15 +177,19 @@ class Game:
 
     def digest(self) -> str:
         payload = {key: self.state()[key] for key in ("grid", "player", "health", "elapsed", "phase", "stats")}
+        if self.rules >= 2:
+            payload.update(version=self.version, frozen=self.frozen, move_ready=self.move_ready,
+                           window={"number": self.window.number, "opened": self.window.opened, "closes": self.window.closes,
+                                   "counts": self.window.counts()} if self.window else None, audit=self.audit)
         return hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest()
 
     def replay(self) -> dict:
-        return {"schema": 1, "seed": self.seed, "round_id": self.round_id, "allow_changes": self.allow_changes, "commands": self.commands,
+        return {"schema": 1, "rules": self.rules, "seed": self.seed, "round_id": self.round_id, "allow_changes": self.allow_changes, "commands": self.commands,
                 "audit": self.audit, "final_vote_counts": self.window.counts() if self.window else {}, "digest": self.digest()}
 
 
 def replay_round(record: dict) -> Game:
-    game = Game(record["seed"], record["allow_changes"], record.get("round_id"))
+    game = Game(record["seed"], record["allow_changes"], record.get("round_id"), record.get("rules", 1))
     for command in record["commands"]:
         op = command["op"]
         if op == "control":
@@ -170,6 +198,8 @@ def replay_round(record: dict) -> Game:
             game.move(command["dx"], command["dy"], record=False)
         elif op == "mutation":
             game.mutate(Mutation.model_validate(command["proposal"]), command["source"], record=False)
+        elif op == "restart_vote":
+            game.restart_vote(record=False)
         elif op == "tick":
             # Recorded aggregate decisions avoid retaining Twitch identities in replays.
             if game.window:

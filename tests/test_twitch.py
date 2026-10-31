@@ -53,6 +53,7 @@ def test_eventsub_handoff_notification_dedup_and_subscription(monkeypatch):
                 self.closed = True
         old, new = Socket([welcome, notification, reconnect]), Socket([welcome, notification, revoked])
         async def connect(url, **kwargs):
+            assert kwargs["ping_interval"] is None, "Twitch only permits pong replies, not client pings"
             if "reconnect" in url:
                 assert not old.closed, "Old connection must remain open through new welcome"
                 return new
@@ -69,6 +70,9 @@ def test_eventsub_handoff_notification_dedup_and_subscription(monkeypatch):
         with pytest.raises(twitch.TwitchFailure, match="revoked"):
             await asyncio.wait_for(connection.listen(), 2)
         assert len(received) == 1 and received[0][2] == "!wall"
+        assert connection.metrics["received"] == 2
+        assert connection.metrics["delivered"] == 1 and connection.metrics["duplicates"] == 1
+        assert connection.metrics["reconnects"] == 1
         assert len(subscriptions) == 1, "Handoff inherits subscriptions instead of creating duplicates"
         assert subscriptions[0]["condition"] == {"broadcaster_user_id": "123", "user_id": "123"}
         assert old.closed and new.closed

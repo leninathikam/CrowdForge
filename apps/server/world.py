@@ -62,12 +62,24 @@ class Validation:
     accepted: bool
     reason: str
     grid: list[list[int]] | None = None
+    metrics: dict | None = None
 
 
-def validate(grid: list[list[int]], player: Point, exit: Point, proposal: Mutation) -> Validation:
+def route_metrics(grid: list[list[int]], route: list[Point]) -> dict:
+    """Exposure counts safe route tiles adjacent to lava, not predicted HP loss."""
+    exposed = sum(any(0 <= ny < len(grid) and 0 <= nx < len(grid[0]) and grid[ny][nx] == LAVA
+                      for nx, ny in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1))) for x, y in route)
+    return {"steps": len(route) - 1 if route else None, "hazard_adjacent_tiles": exposed,
+            "required_lava_tiles": 0 if route else None}
+
+
+def validate(grid: list[list[int]], player: Point, exit: Point, proposal: Mutation,
+             remaining: float | None = None, rules: int = 2) -> Validation:
     candidate = [row[:] for row in grid]
     replacement = {"lava": LAVA, "wall": WALL, "bridge": BRIDGE}[proposal.kind]
     changed = False
+    if rules >= 2 and len(set(proposal.targets)) != len(proposal.targets):
+        return Validation(False, "Conflicting proposal: a tile appears more than once.")
     for x, y in proposal.targets:
         if not (0 < x < len(grid[0]) - 1 and 0 < y < len(grid) - 1):
             return Validation(False, "Arena boundary is protected.")
@@ -83,21 +95,39 @@ def validate(grid: list[list[int]], player: Point, exit: Point, proposal: Mutati
         changed |= old != replacement
     if not changed:
         return Validation(False, "No terrain would change.")
-    if not path(candidate, player, exit):
+    after = path(candidate, player, exit)
+    if not after:
         return Validation(False, "Rejected: this would remove the last safe route to the exit.")
-    return Validation(True, "Safe route preserved. World mutation committed.", candidate)
+    if rules < 2:
+        return Validation(True, "Safe route preserved. World mutation committed.", candidate)
+    before = path(grid, player, exit)
+    metrics = {"before": route_metrics(grid, before), "after": route_metrics(candidate, after),
+               "path_delta": len(after) - len(before) if before else None,
+               "minimum_escape_seconds": round((len(after) - 1) * .2 + .5, 2),
+               "remaining_seconds": remaining}
+    if rules >= 2:
+        if before and len(after) - len(before) > 12:
+            return Validation(False, "Rejected: detour exceeds the 12-step fairness limit.", metrics=metrics)
+        if remaining is not None and metrics["minimum_escape_seconds"] > remaining:
+            return Validation(False, "Rejected: the safe route exceeds the remaining time budget.", metrics=metrics)
+    return Validation(True, "Safe route preserved. World mutation committed.", candidate, metrics)
 
 
-def select_target(grid: list[list[int]], player: Point, exit: Point, kind: str, seed: int) -> Mutation:
+def select_target(grid: list[list[int]], player: Point, exit: Point, kind: str, seed: int,
+                  remaining: float | None = None, rules: int = 2) -> Mutation:
     rng = random.Random(seed)
     points = [(x, y) for y in range(1, HEIGHT - 1) for x in range(1, WIDTH - 1)]
     rng.shuffle(points)
     # Prefer meaningful targets near the player; the stable shuffle breaks equal-distance ties.
     points.sort(key=lambda p: abs(abs(p[0] - player[0]) + abs(p[1] - player[1]) - 5))
+    informative_rejection = None
     for x, y in points[:240]:
         targets = [(x, y)] if kind == "bridge" else [(x, y), (x + 1, y), (x, y + 1)]
         proposal = Mutation(kind=kind, targets=targets)
-        if validate(grid, player, exit, proposal).accepted:
+        result = validate(grid, player, exit, proposal, remaining, rules)
+        if result.accepted:
             return proposal
+        if result.metrics and informative_rejection is None:
+            informative_rejection = proposal
     # A bounded unsuccessful proposal is still audited and explained by the same validator.
-    return Mutation(kind=kind, targets=[exit])
+    return informative_rejection or Mutation(kind=kind, targets=[exit])
