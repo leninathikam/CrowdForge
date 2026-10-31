@@ -18,9 +18,9 @@ Deadline: **November 2, 2026 at 2 p.m. PST / 5 p.m. EST / 22:00 UTC**. Confirm t
 - [x] Real broadcaster authorization completed (leninathikam)
 - [x] A real chat vote reaches the backend and changes the game (one explicitly authorized broadcaster test vote; independent-viewer playtest still pending)
 - [ ] Real-account disconnect, refresh and reconnect behavior verified
-- [ ] Docker image/Compose runtime exercised (CI or a machine with Docker)
+- [x] Docker image/Compose runtime and persistent evidence exercised on [CI](https://github.com/leninathikam/CrowdForge/actions/runs/41215265874)
 - [ ] Persistent public host configured, deployed and tested at its real URL
-- [ ] Source pushed to GitHub/GitLab/Bitbucket and judging access tested
+- [x] [Public source pushed](https://github.com/leninathikam/CrowdForge); public visibility and unauthenticated HTTP 200 verified
 - [ ] Public YouTube demo under three minutes recorded and verified
 - [ ] Final story updated with the measured live run and verified links
 - [ ] Devpost form submitted before deadline
@@ -28,7 +28,7 @@ Deadline: **November 2, 2026 at 2 p.m. PST / 5 p.m. EST / 22:00 UTC**. Confirm t
 
 ## Current external blockers
 
-Twitch app credentials are now present in the ignored local .env, and real broadcaster authorization plus one chat-driven lava mutation were verified. Independent-viewer playtesting and a recorded live demo remain. GitHub was reauthenticated and the public repository was created at https://github.com/leninathikam/CrowdForge. Source publication/access is checked separately below. No persistent hosting credentials or public application URL are available. Docker is not installed in the tested environment. These do not prevent building, offline play, mocked integration testing or preparing deployment files, but they prevent declaring the project submission-ready.
+Twitch app credentials are now present in the ignored local .env, and real broadcaster authorization plus one chat-driven lava mutation were verified. Independent-viewer playtesting and a recorded live demo remain. GitHub was reauthenticated and the public repository was created at https://github.com/leninathikam/CrowdForge. Source was pushed and unauthenticated access returned HTTP 200. No persistent hosting credentials or public application URL are available. Docker is not installed on the workstation; Docker Compose and SQLite persistence passed on the CI runner. These do not prevent building, offline play, mocked integration testing or preparing deployment files, but they prevent declaring the project submission-ready.
 
 ## Values to submit
 

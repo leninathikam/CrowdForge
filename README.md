@@ -4,7 +4,7 @@
 
 A working browser survival game. You run to the portal; Twitch chat votes every 15 seconds to forge lava, walls or bridges. The server checks every change against a safe-path invariant before committing it.
 
-**Readiness: NOT READY for hackathon submission until an authentic demo recording, repository publication and deployment verification are completed. Real broadcaster authorization and one live chat-driven mutation have been verified.** Offline gameplay, production builds and test evidence are separate from that acceptance gate. See [verification](docs/VERIFICATION.md).
+**Readiness: NOT READY for hackathon submission until an authentic demo recording and public application deployment verification are completed. Real broadcaster authorization and one live chat-driven mutation have been verified.** Offline gameplay, production builds and test evidence are separate from that acceptance gate. See [verification](docs/VERIFICATION.md).
 
 ## Run locally
 
@@ -88,7 +88,7 @@ Copy `.env.example`, set your HTTPS PUBLIC_URL, exact ALLOWED_ORIGINS and Twitch
 docker compose up --build -d
 ```
 
-The container serves both frontend and backend, exposes `/api/health`, uses a non-root account and persists round evidence in a named volume. Put a TLS reverse proxy in front of the loopback-bound port and enable WebSocket upgrades. See [deployment instructions](docs/DEPLOYMENT.md). Docker execution is unverified on this workstation because Docker is unavailable. CI includes a Docker build/start/health/stop job.
+The container serves both frontend and backend, exposes `/api/health`, uses a non-root account and persists round evidence in a named volume. Put a TLS reverse proxy in front of the loopback-bound port and enable WebSocket upgrades. See [deployment instructions](docs/DEPLOYMENT.md). Docker is unavailable on this workstation, but [CI](https://github.com/leninathikam/CrowdForge/actions/runs/41215265874) successfully built and launched Compose, exercised real HTTP controls, restarted the service and verified SQLite evidence persisted in the named volume.
 
 Public source repository: https://github.com/leninathikam/CrowdForge. No public application deployment or YouTube video is claimed. [Submission materials](submission/SUBMISSION_CHECKLIST.md) list exact remaining steps and the actual Codex session evidence.
 

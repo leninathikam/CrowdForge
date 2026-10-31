@@ -22,5 +22,15 @@
   "client_secret_scan": "no source/build/evidence matches; .env ignored",
   "live_twitch": "one authorized real broadcaster !lava vote applied validated mutation; observational record in live-twitch-verification.json",
   "public_deployment_url": null,
-  "docker_runtime": "not yet verified on this workstation"
+  "docker_runtime": "verified on GitHub Actions; unavailable on workstation",
+  "github_repository": "https://github.com/leninathikam/CrowdForge",
+  "public_repository_unauthenticated_http_status": 200,
+  "ci": {
+    "url": "https://github.com/leninathikam/CrowdForge/actions/runs/41215265874",
+    "commit": "e6cf0477a4b762d807b959db1bd90d18be8d1336",
+    "conclusion": "success",
+    "verify_job": "success",
+    "docker_compose_job": "success",
+    "persistent_evidence_after_restart": true
+  }
 }

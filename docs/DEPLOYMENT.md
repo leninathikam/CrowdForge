@@ -1,6 +1,6 @@
 # Deployment and live verification
 
-This repository prepares a persistent single-process deployment. No public application URL has been verified. Docker is unavailable on the development workstation; the container and Compose files have not been executed here.
+This repository prepares a persistent single-process deployment. No public application URL has been verified. Docker is unavailable on the development workstation. The container and Compose stack were executed successfully on GitHub Actions: https://github.com/leninathikam/CrowdForge/actions/runs/41215265874. The smoke test verified frontend serving, authenticated controls, health, restart and persisted SQLite evidence.
 
 ## Persistent host
 

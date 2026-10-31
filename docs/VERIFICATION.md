@@ -27,11 +27,11 @@ Real loopback transport, 30 synthetic vote samples, one observer: **105.94 ms me
 
 Headless Chromium at 1920 × 1080 measured 120 requestAnimationFrame intervals over 2,050 ms: 58.54 effective frames/second, 16.7 ms median interval and 16.8 ms p95. Source: `artifacts/browser-performance.json`. This short rendering sample does not measure GPU completion, live Twitch load or OBS compositor performance.
 
-## Implemented but unverified with external services
+## External verification and remaining gates
 
 - **Verified live:** real broadcaster OAuth, token validation, EventSub subscription, one real !lava chat vote, vote close, accepted three-tile lava mutation and score 30. Simulation was disabled. See LIVE_TWITCH_VERIFICATION.md. **Still unverified live:** independent-viewer traffic, token expiry/revocation, long-duration reconnect and OBS recording. Credentials are ignored by Git and were not printed.
-- Docker build, health check, Compose volume and graceful shutdown: files and CI jobs are prepared; Docker is absent on this workstation.
-- GitHub Actions jobs: configured, not remotely executed.
+- **Verified on CI:** Docker/Compose build, packaged frontend and authenticated HTTP actions, health checks, container restart and persistent SQLite evidence. Code revision `e6cf0477a4b762d807b959db1bd90d18be8d1336`; [successful run](https://github.com/leninathikam/CrowdForge/actions/runs/41215265874). Docker remains unavailable on this workstation.
+- GitHub Actions: both verify and docker jobs passed. The verify job ran Python/frontend/browser tests, the production build, replay verification and the benchmark from a clean runner.
 - Public host, TLS proxy, internet latency and OBS capture: not verified. No public deployment URL is supplied.
 - Public source repository created: https://github.com/leninathikam/CrowdForge. Local implementation commits and the source push are recorded in Git; remote CI results are separate from local tests.
 
@@ -43,4 +43,6 @@ The browser timeline and exported reconstruction are implemented. Optional Suppl
 
 ## Verdict
 
-**NOT READY FOR SUBMISSION** until public/repository access gates are verified, Docker is exercised and the authentic public YouTube demo is recorded. The real Twitch vote-to-mutation path has been verified. The local build is playable and testable. See `submission/SUBMISSION_CHECKLIST.md` for the exact remaining steps.
+**NOT READY FOR SUBMISSION** until public application hosting is verified and the authentic public YouTube demo is recorded/uploaded. Public source access and Docker Compose persistence are verified. The real Twitch vote-to-mutation path has been verified. The local build is playable and testable. See `submission/SUBMISSION_CHECKLIST.md` for the exact remaining steps.
+
+CI emits upstream action-runtime deprecation and runner-image migration notices; the jobs pass. These notices are separate from application console checks.

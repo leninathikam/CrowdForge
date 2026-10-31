@@ -16,11 +16,11 @@
 
 ## Verified
 
-Automated engine/API/mock-transport/frontend/browser tests, actual local production serving, deterministic exported replay, synthetic mutation/vote benchmarks, loopback transport timing, short headless rendering timing, responsive screenshots and one **real broadcaster Twitch vote applying a lava mutation**. See VERIFICATION.md and LIVE_TWITCH_VERIFICATION.md.
+Automated engine/API/mock-transport/frontend/browser tests, actual local production serving, deterministic exported replay, synthetic mutation/vote benchmarks, loopback transport timing, short headless rendering timing, responsive screenshots remotely executed CI with Docker Compose restart/persistence, and one **real broadcaster Twitch vote applying a lava mutation**. See VERIFICATION.md and LIVE_TWITCH_VERIFICATION.md.
 
 ## Prepared but externally unverified
 
-Public deployment, remotely executed CI, Docker runtime/Compose volume behavior, real OBS capture, extended live token/reconnect behavior, independent-viewer load and a public YouTube demo. Remote source publication needs a working GitHub/GitLab/Bitbucket login.
+Public application hosting, real OBS capture, extended live token/reconnect behavior, independent-viewer load and a public YouTube demo. Source is published at https://github.com/leninathikam/CrowdForge; public visibility and unauthenticated HTTP access were verified.
 
 ## Deliberately omitted optional work
 

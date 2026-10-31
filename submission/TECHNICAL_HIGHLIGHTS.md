@@ -10,4 +10,4 @@
 - **Real integration evidence:** broadcaster OAuth and EventSub were connected, and one human-authorized real !lava message counted and applied three validated lava tiles. This was not a synthetic vote or an independent-viewer load test.
 - **Clear limits:** one server process, ephemeral active sessions, no claimed public deployment or recorded OBS demo, no claim of thousands of simultaneously connected viewers.
 
-See docs/VERIFICATION.md for actual test totals and final measured results. CI includes a container smoke test, but a configured workflow is not an executed CI result.
+See docs/VERIFICATION.md for actual test totals and final measured results. CI has executed successfully, including Compose restart and persistent evidence checks: https://github.com/leninathikam/CrowdForge/actions/runs/41215265874.
