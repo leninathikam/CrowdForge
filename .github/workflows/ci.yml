@@ -39,10 +39,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: docker build -t crowdforge:test .
-      - run: docker run -d --name crowdforge -p 8000:8000 crowdforge:test
+      - name: Build and launch Compose
+        run: |
+          cp .env.example .env
+          docker compose -p crowdforge-ci up --build -d
       - uses: actions/setup-python@v5
         with:
           python-version: "3.14"
       - run: python scripts/wait_for_server.py
-      - run: docker stop crowdforge
+      - run: python scripts/container_smoke.py
+      - run: docker compose -p crowdforge-ci restart crowdforge
+      - run: python scripts/wait_for_server.py
+      - name: Verify persisted evidence after restart
+        run: >-
+          docker compose -p crowdforge-ci exec -T crowdforge python -c
+          "import os,sqlite3; db=sqlite3.connect(os.environ['DATABASE_PATH']); count=db.execute('SELECT COUNT(*) FROM rounds WHERE seed=7731 AND outcome=\"paused\"').fetchone()[0]; assert count >= 1; print('SQLite evidence survived Compose restart')"
+      - name: Clean up isolated test deployment
+        if: always()
+        run: docker compose -p crowdforge-ci down --volumes
