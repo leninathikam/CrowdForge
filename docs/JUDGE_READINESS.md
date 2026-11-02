@@ -33,6 +33,10 @@ Exported winning replay verified at 26.0 round seconds, digest `ab3c136af62f278d
 
 See [EVALUATION_RESULTS.md](EVALUATION_RESULTS.md) for raw measurements and [CURRENT_STATE_AUDIT.md](CURRENT_STATE_AUDIT.md) for baseline findings. Earlier CI links in VERIFICATION.md refer to the pre-upgrade source; final upgrade CI is recorded separately.
 
+**Remote upgrade CI passed:** [run 41506924687](https://github.com/leninathikam/CrowdForge/actions/runs/41506924687), code/test commit `d6a7bfb8512a2f8dd350841866a44cb5d6e88554`. Both verify and docker jobs passed. This includes the full three-scenario browser suite after correcting the pause acknowledgment assertion, replay CLI, both benchmark programs, eight-observer synchronization, packaged Compose startup and SQLite persistence after restart. The targeted local pause/gameplay rerun also passed (57.2s); raw report: `artifacts/pause-regression-results.json`.
+
+The user began a fresh live rehearsal after the updated server restarted. It remains pending observed outcome; no additional public chat message was sent by the agent. The existing one-vote record is historical evidence, not claimed as a test of this revised build.
+
 ## Deadline plan
 
 1. Reconnect Twitch in the updated local build, use a genuine viewer or clearly identify a broadcaster test, and capture a vote closing into a real mutation. Preserve the replay before closing the server. No additional public chat posts have been authorized or sent during this audit.

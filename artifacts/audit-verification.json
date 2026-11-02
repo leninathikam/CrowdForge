@@ -11,5 +11,6 @@
   "fanout_benchmark": "artifacts/sync-results.json",
   "historical_live_evidence": "artifacts/live-twitch-verification.json",
   "fresh_live_regression": "pending user account check",
+  "ci": {"url": "https://github.com/leninathikam/CrowdForge/actions/runs/41506924687", "tested_commit": "d6a7bfb8512a2f8dd350841866a44cb5d6e88554", "conclusion": "success", "verify": "success", "docker": "success"},
   "limits": "Synthetic local browser and transport tests do not establish live audience capacity, public hosting, real OBS recording or token-expiry soak. Full final suite was run after environment dependencies finished installing."
 }

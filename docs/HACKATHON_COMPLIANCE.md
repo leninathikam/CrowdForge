@@ -1,6 +1,6 @@
 # Hackathon compliance
 
-Verified against the linked official pages on October 30, 2026 (America/New_York).
+Initially verified against the linked official pages on October 30, 2026 (America/New_York); official rules and deadline rechecked on November 2. The rules permit access through a runnable repository. A separate public app host is recommended, not explicitly mandatory.
 
 - [Rules](https://twitchcon-codex.devpost.com/rules): entrants must be at least 18 or local age of majority, whichever is older; individuals/teams only. Explicitly listed excluded residences include Brazil, Quebec, Russia, Crimea, Cuba, Iran and North Korea, plus applicable sanctions/prohibited jurisdictions. Sponsor/administrator affiliates and conflict-of-interest relationships are excluded. Entrants must personally confirm eligibility against section 3.
 - New work must be created during October 23, 2026 10 a.m. Pacific through November 2, 2026 2 p.m. Pacific. Deadline is **November 2, 5 p.m. EST / 22:00 UTC**. Standard frameworks and tools are allowed; previous project code is not used here.
@@ -23,8 +23,8 @@ Initial audit: the supplied CrowdForge directory contained only an initialized `
 - [ ] Entrant confirms age, residence, team representation and exclusions
 - [x] Real Twitch account authorizes the registered application
 - [ ] Record real chat affecting the game; simulation does not satisfy this
-- [ ] Publish repository and verify judge access
-- [ ] Verify deployment with HTTPS and persistent backend
+- [x] Publish repository and verify source access (leninathikam/CrowdForge)
+- [ ] Recommended: verify public deployment with HTTPS and persistent backend; runnable repository is the permitted alternative
 - [ ] Upload public YouTube video below three minutes
 - [ ] Submit description, repository, video and session ID before deadline
 
