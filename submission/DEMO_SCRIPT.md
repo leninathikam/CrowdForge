@@ -1,40 +1,33 @@
-# 2:45 authentic demo
+# 2:45 authentic demo — updated integrity proof
 
-Use the actual running build and authenticated Twitch chat. Record the streamer view and Twitch chat together, with enough size to read both. Do not replace genuine chat with Simulation Lab events. The intentional integrity diagnostic must be called a streamer diagnostic, not an audience vote.
+Record the actual final build, Twitch chat and Codex work. Use genuine viewer inputs; if only the broadcaster is available, call it a broadcaster test. The controlled exit-wall rejection is explicitly a streamer diagnostic. Hide credentials, cookies, callback codes and overlay tokens.
 
-0:00–0:15 — Show the runner moving. Say: “I'm trying to reach that portal. Chat gets to rebuild the arena around me.” Show WASD and the visible objective.
+| Time | Actual footage | Narration / proof |
+|---|---|---|
+| 0:00–0:15 | Moving runner, portal, connected Twitch badge | “I have 100 seconds to escape. Twitch chat can rebuild the arena around me.” |
+| 0:15–0:35 | Real chat sends `!lava`; visible count and window closes | “One vote per viewer decides the next change.” Capture a genuine outcome; do not splice synthetic input into this sequence. |
+| 0:35–0:55 | Lava appears, runner reroutes; damage cue if real damage occurs | “Chat changes the terrain, but a change must preserve a lava-free route and stay within our detour and time limits.” |
+| 0:55–1:20 | Open **Developer diagnostics** (shield icon or **Inspect world integrity**). Expand the actual applied mutation. | “This is this round's evidence: received inputs, committed tiles and the route before and after.” Show Twitch counters and tile diff. Adjacency describes proximity, not predicted damage. |
+| 1:20–1:40 | While running, click **Test unsafe exit wall**. Expand rejection, then **Pause for replay proof**. | “This is my deliberate invalid test, not a viewer vote. Rejection leaves the world unchanged.” |
+| 1:40–2:00 | Click **Verify deterministic replay**. Show actual digest/command count. | “The server reconstructs the paused round from its seed and recorded inputs, then compares the state and mutation history.” No signed-attestation or full-video-replay claim. |
+| 2:00–2:20 | Close diagnostics, resume and show a genuine result; OBS view if captured | “The streamer stays in control. The crowd creates the obstacles and rescue routes.” Do not narrate a win over a loss. |
+| 2:20–2:35 | `benchmarks/competition-results.json` and evaluation table | “On the same 1,800 adversarial cases, the original checker kept exits reachable but allowed 600 excessive-detour or time-budget violations. The new rules allowed zero.” Identify this as synthetic safety testing, not viewer capacity. |
+| 2:35–2:45 | Actual Codex chat, implementation change and passing tests; end on game | “Codex helped implement, audit and test the engine. CrowdForge: the crowd fights back, and the world has to play fair.” |
 
-0:15–0:35 — Show TWITCH CONNECTED and genuine viewers sending !lava. Read the vote count and close countdown. “Every fifteen seconds, one vote per viewer decides what changes.”
+Rehearse once. Prioritize clear real Twitch footage, real Codex footage and legible proof over extra cinematic shots. Export the live replay before stopping the server. The safe corridor can be fast: let the genuine vote resolve before ending the demo run, without claiming this staged pacing proves retention.
 
-0:35–1:00 — Capture the real window closing, the lava appearing and the runner rerouting. “The winning change goes through the server, then into the world.”
+## Recording checklist
 
-1:00–1:20 — Show health dropping when the runner touches lava, then move back onto safe tiles. Avoid using rescue unless it is honestly described and visible in the timeline.
+- [ ] Current build/server; reconnect Twitch after restart.
+- [ ] Genuine command increments count and closes into an actual mutation.
+- [ ] Diagnostics shows real live receipts; synthetic inputs are never called viewers.
+- [ ] Exit-wall test is called a streamer diagnostic.
+- [ ] Actual paused replay verifies and is exported.
+- [ ] Show actual Codex edits/test output; include genuine principal session ID in the form.
+- [ ] If using OBS, verify a 1920×1080 Browser source and text readability.
+- [ ] No secrets, unlicensed music or third-party material without permission.
+- [ ] Final video under three minutes; target 2:45.
+- [ ] Upload to **public YouTube**, verify signed-out access, and use that real watch URL.
+- [ ] Submit before 2 November 2026, 5 p.m. Eastern.
 
-1:20–1:40 — Open Help and click Run integrity diagnostic. “This is a deliberately invalid proposal from the streamer: wall off the exit.” Show MUTATION BLOCKED and the protected-exit explanation. “Rejected proposals never commit.” If presenting a last-route example, use the reproducible bottleneck test/benchmark and identify it as that, not as a natural live vote.
-
-1:40–2:05 — Ask real chat to vote !bridge. Capture a real vote close and the resulting safe bridge. Show the mutation in the event feed. Do not edit away a rejected or missing outcome and narrate success over it; rehearse until the real sequence works.
-
-2:05–2:25 — Reach the exit. Show the actual result and audience timeline. Export the replay. State the real counted vote and mutation totals from that run.
-
-2:25–2:40 — Show benchmarks/results.json briefly: same 3,000 adversarial scenarios; 694 unsafe exits under unrestricted changes, zero under the validator. Show the actual Codex chat, an engine change and test output. Do not imply the benchmark is a live-viewer load test.
-
-2:40–2:45 — End on the project identity: “CrowdForge. One streamer. One world. The crowd fights back.”
-
-## Recording and rehearsal checklist
-
-- [ ] Repository build is current; production server is healthy.
-- [ ] Twitch is authorized and status is connected.
-- [ ] A different genuine viewer's command changes a visible count.
-- [ ] Simulation Lab is absent in live mode.
-- [ ] OBS browser source is 1920 × 1080 and its text is readable in the recording.
-- [ ] Rehearse lava, controlled diagnostic, bridge and escape with the same seed.
-- [ ] Rejected proposals are explained honestly; no fake viewer counts or messages.
-- [ ] Hide console credentials, OAuth URLs, owner cookies and overlay tokens.
-- [ ] Capture real Codex edits and passing test output.
-- [ ] Use original audio or licensed music only; plain narration is sufficient.
-- [ ] Check keyboard sound, narration levels and reduced-motion preference.
-- [ ] Final video is 2:40–2:50 and below three minutes.
-
-## Upload
-
-In YouTube Studio, create an upload, select the recording, add the exact project name and a factual description, choose **Public** visibility, and finish processing. Verify the resulting watch URL while signed out. Add that real URL to DEVPOST_STORY.md and the Devpost form. Never invent or substitute a placeholder link.
+Do not invent a hosted-app or YouTube URL. Runnable source is the official access route; separate public hosting is recommended but not explicitly mandatory.

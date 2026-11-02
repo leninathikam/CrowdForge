@@ -1,5 +1,14 @@
 # Technical highlights
 
+## Audit upgrades
+
+- Rules 2 limits safe-route detours to 12 added steps and checks remaining time using an explicit movement estimate; reports route length, lava adjacency and atomic tile diffs. It rejects duplicate-target conflicts.
+- Mode changes are replay inputs; the digest covers window/control/audit state. The owner can reconstruct and verify a paused or finished actual round in-app, while old records retain rules-1 behavior.
+- One session-wide sequence orders socket and POST snapshots across reset. Pending streamer controls survive delayed requests. Twitch client-initiated pings are disabled, and real receipt/dedup counters are visible without exposing chat identities.
+- Independent-oracle comparison: 1,800 adversarial cases; v1 kept all exits reachable but accepted 600 states violating the new detour/time policy. v2 accepted zero. 100 replay rounds and 209 checks across eight observer sockets had zero mismatches. See [evaluation](../docs/EVALUATION_RESULTS.md) for acceptance rates, latency and limitations.
+
+The original-build highlights below remain context; historical timings and CI links are not final-upgrade measurements.
+
 - **Transactional terrain:** typed proposals validate on a copy. Protected entities, legal terrain transitions and safe BFS reachability all pass before one authoritative grid assignment commits the change. Rejection preserves the map/version and emits an explanation.
 - **A genuinely safe path:** lava is traversable for the runner but excluded from the escape invariant. “You can walk there” is weaker than “the game leaves a safe escape.”
 - **Deterministic evidence:** seeded maps, deterministic bounded target selection, logged control/tick decisions and a final-state digest allow reconstruction without keeping viewer identities.

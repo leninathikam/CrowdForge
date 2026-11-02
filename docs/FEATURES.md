@@ -2,6 +2,8 @@
 
 ## Implemented
 
+- Audit upgrades: rules-2 detour/time limits and route exposure analysis; duplicate-target conflict rejection; tile diffs; recorded mode-switch replay with legacy compatibility; owner-only in-app replay verification and real diagnostics; ordered snapshots across reset; pending streamer controls; Twitch ping correction; checkpoint failure visibility; movement/damage/countdown cues; keyboard-contained dialogs and mobile diagnostics. See EVALUATION_RESULTS.md and JUDGE_READINESS.md for current evidence.
+
 - Original 24 × 16 seeded arena, procedural pixel terrain/player/portal, WASD/arrows and supplementary touch movement.
 - Server-authoritative collision, damaging lava, 100 HP, 100-second timer, exit win, timeout/health loss, reset and pause/resume.
 - Visible emergency rescue, vote freeze/unfreeze and an explicitly labeled integrity diagnostic.

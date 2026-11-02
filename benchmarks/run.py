@@ -11,6 +11,7 @@ import tracemalloc
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from apps.server.world import generate, Mutation, validate, path, FLOOR, WALL, LAVA, BRIDGE
 from apps.server.voting import VoteWindow
+from competition import oracle
 
 
 def run(scenarios=3000):
@@ -35,7 +36,7 @@ def run(scenarios=3000):
     for name in ("unrestricted", "crowdforge"):
         timings, accepted, rejected, invalid, unreachable, errors = [], 0, 0, 0, 0, 0
         for grid, proposal in data:
-            truth = validate(grid, (2, 13), (21, 2), proposal)
+            truth = oracle(grid, (2, 13), (21, 2), proposal)
             begin = time.perf_counter_ns()
             try:
                 if name == "unrestricted":
@@ -48,7 +49,7 @@ def run(scenarios=3000):
                 timings.append((time.perf_counter_ns() - begin) / 1e6)
                 accepted += applied
                 rejected += not applied
-                invalid += applied and not truth.accepted
+                invalid += applied and not truth
                 unreachable += not bool(path(candidate, (2, 13), (21, 2)))
             except Exception:
                 errors += 1

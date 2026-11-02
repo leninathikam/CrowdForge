@@ -4,11 +4,11 @@
 
 A working browser survival game. You run to the portal; Twitch chat votes every 15 seconds to forge lava, walls or bridges. The server checks every change against a safe-path invariant before committing it.
 
-**Readiness: NOT READY for hackathon submission until an authentic demo recording and public application deployment verification are completed. Real broadcaster authorization and one live chat-driven mutation have been verified.** Offline gameplay, production builds and test evidence are separate from that acceptance gate. See [verification](docs/VERIFICATION.md).
+**Readiness: NOT READY until the authentic public YouTube demo, eligibility confirmation and final Devpost submission are complete.** Real broadcaster authorization and one live mutation were verified before this audit. Separate public hosting is recommended, but the rules permit judging access through this runnable repository. See the [audit](docs/CURRENT_STATE_AUDIT.md), [evaluation](docs/EVALUATION_RESULTS.md) and [judge readiness](docs/JUDGE_READINESS.md).
 
 ## Run locally
 
-Requires Node 22.12+ and Python 3.14 (the tested Python version). Use a fresh virtual environment.
+Requires Node 22.12+ and Python 3.12 or newer (Python 3.14 in CI). Use a fresh virtual environment.
 
 ```powershell
 python -m venv .venv
@@ -70,11 +70,17 @@ npx playwright install chromium
 npm run test:e2e
 python scripts/replay.py artifacts/e2e-replay.json
 python benchmarks/run.py
+python benchmarks/competition.py
+python scripts/measure_sync.py
 ```
 
 Tests cover movement, collision, health, timers, transitions, generated maps, atomic mutation rejection, vote deduplication/order/cooldowns/ties/capacity, OAuth state, simulated EventSub handoff/revocation, access controls, WebSocket synchronization, frontend snapshot validation and the complete browser gameplay loop. Mocked EventSub tests alone do not prove a real Twitch account has connected. A separate real broadcaster test was observed in this build: one !lava vote applied three validated lava tiles; see docs/LIVE_TWITCH_VERIFICATION.md.
 
 Download a replay from the Audience Impact Timeline. `python scripts/replay.py path/to/download.json` reconstructs the initial seed and recorded server inputs and verifies the final SHA-256 state digest. Replays retain aggregate votes, not Twitch chatter identities. The UI timeline shows the key events; the CLI performs the deterministic reconstruction.
+
+Open **Developer diagnostics** using the shield icon, or **Inspect world integrity** beside the voting panel. This optional view shows actual Twitch transport counters, accepted/ignored input receipts, measured validation latency, versions and before/after tiles. Pause or finish and select **Verify deterministic replay** to compare reconstructed state and audit. **Test unsafe exit wall** is a labeled streamer diagnostic, never an audience vote.
+
+Rules 2 add a 12-step detour ceiling and remaining-time estimate (five moves/second plus 0.5 seconds), reject duplicate targets, and report lava-adjacent route tiles. The estimate is a fairness bound, not a human-escape guarantee. Ordered snapshots prevent delayed POSTs from rolling back socket updates across reset. Legacy replay records keep rules-1 semantics. See [architecture](docs/ARCHITECTURE.md) for limits.
 
 Chaos score = 10 × changed distinct tiles + 2 × positive safe-path length increase, accumulated for accepted mutations. It is a transparent game score, not a scientific attribution metric. Emergency rescue and rejected proposals do not add points.
 

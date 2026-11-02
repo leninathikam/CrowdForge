@@ -1,5 +1,7 @@
 # Evidence-based self-assessment
 
+This is the **pre-upgrade baseline assessment**. See [JUDGE_READINESS.md](JUDGE_READINESS.md) for the current audit, updated scores and final verification.
+
 Official criteria are equally weighted. These are conservative internal scores out of ten, not judge predictions or a claim about other entries.
 
 **Innovation / Idea — 6/10.** A streamer controls a survival runner while chat mutates the arena. The distinct mechanism is transactional validation with a non-damaging escape-path invariant and explainable rejection. The benchmark demonstrates the difference from unrestricted changes. Audience-controlled games and reachability algorithms already exist; no novelty search or patent claim was performed.

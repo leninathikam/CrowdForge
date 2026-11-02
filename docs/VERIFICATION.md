@@ -1,5 +1,7 @@
 # Verification evidence
 
+**Historical baseline below.** For the October 31–November 2 upgrades, see [EVALUATION_RESULTS.md](EVALUATION_RESULTS.md) and [JUDGE_READINESS.md](JUDGE_READINESS.md). New raw benchmark files supersede historical timings below. Public hosting is recommended, not an explicit requirement separate from runnable repository access.
+
 Local verification performed during the October 30–31, 2026 build session (America/New_York). Results below are observed, not projected. No remote CI execution, public deployment or real Twitch chat is inferred from local tests.
 
 ## Implemented and tested
@@ -43,6 +45,6 @@ The browser timeline and exported reconstruction are implemented. Optional Suppl
 
 ## Verdict
 
-**NOT READY FOR SUBMISSION** until public application hosting is verified and the authentic public YouTube demo is recorded/uploaded. Public source access and Docker Compose persistence are verified. The real Twitch vote-to-mutation path has been verified. The local build is playable and testable. See `submission/SUBMISSION_CHECKLIST.md` for the exact remaining steps.
+**NOT READY FOR SUBMISSION** until the authentic public YouTube demo, eligibility confirmation and final Devpost form are complete. Public source, Compose persistence and one real Twitch mutation were verified before this audit. The rules permit runnable repository access; separate hosting is recommended, not mandatory. See `submission/SUBMISSION_CHECKLIST.md`.
 
 CI emits upstream action-runtime deprecation and runner-image migration notices; the jobs pass. These notices are separate from application console checks.

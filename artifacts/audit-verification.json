@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-02",
+  "baseline_commit": "0bdd0ec",
+  "python": "3.12.14",
+  "pytest": {"passed": 197, "seconds": 22.33, "warnings": 1},
+  "vitest": {"passed": 10},
+  "playwright": {"passed": 3, "failed": 0, "gameplay_scenario_seconds": 49.3},
+  "production_build": {"passed": true, "javascript_kb": 267.62, "javascript_gzip_kb": 85.72, "css_kb": 29.77, "css_gzip_kb": 7.29},
+  "exported_replay": {"phase": "won", "elapsed": 26.0, "digest": "ab3c136af62f278d6ac3ecbf77b4bf9d9e3bffe9e1d72a0601415f165189ef13", "verified": true},
+  "competition_benchmark": "benchmarks/competition-results.json",
+  "fanout_benchmark": "artifacts/sync-results.json",
+  "historical_live_evidence": "artifacts/live-twitch-verification.json",
+  "fresh_live_regression": "pending user account check",
+  "limits": "Synthetic local browser and transport tests do not establish live audience capacity, public hosting, real OBS recording or token-expiry soak. Full final suite was run after environment dependencies finished installing."
+}

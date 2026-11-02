@@ -1,0 +1,62 @@
+{
+  "seed": 93017,
+  "scenarios": 1800,
+  "categories": {
+    "bottleneck": 300,
+    "long_detour": 300,
+    "deadline": 300,
+    "conflict": 300,
+    "mixed_atomic": 300,
+    "random": 300
+  },
+  "python": "3.14.3",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "engines": {
+    "unrestricted": {
+      "accepted": 1800,
+      "acceptance_rate": 1.0,
+      "invalid_accepted": 1624,
+      "policy_violation_rate": 0.9022222222222223,
+      "invalid_world_states": 1090,
+      "invalid_state_rate": 0.6055555555555555,
+      "unreachable_exits": 489,
+      "input_mutations": 0,
+      "oracle_disagreements": 1624,
+      "latency_ms_median": 0.0379,
+      "latency_ms_p95": 0.0827
+    },
+    "integrity_v1": {
+      "accepted": 1076,
+      "acceptance_rate": 0.5977777777777777,
+      "invalid_accepted": 900,
+      "policy_violation_rate": 0.5,
+      "invalid_world_states": 600,
+      "invalid_state_rate": 0.3333333333333333,
+      "unreachable_exits": 0,
+      "input_mutations": 0,
+      "oracle_disagreements": 900,
+      "latency_ms_median": 0.157,
+      "latency_ms_p95": 1.0033
+    },
+    "integrity_v2": {
+      "accepted": 176,
+      "acceptance_rate": 0.09777777777777778,
+      "invalid_accepted": 0,
+      "policy_violation_rate": 0.0,
+      "invalid_world_states": 0,
+      "invalid_state_rate": 0.0,
+      "unreachable_exits": 0,
+      "input_mutations": 0,
+      "oracle_disagreements": 0,
+      "latency_ms_median": 0.0503,
+      "latency_ms_p95": 1.9376
+    }
+  },
+  "method": "Identical independent snapshots; independent BFS/policy oracle. Adversarial mix, not natural-play frequency. Latency includes copy and validation, excludes target search and network.",
+  "replay": {
+    "rounds": 100,
+    "digest_or_audit_failures": 0,
+    "inputs_per_round_minimum": 600,
+    "scope": "Seeded aggregate input replay with mode switches, pause and freeze; no live identities or network."
+  }
+}

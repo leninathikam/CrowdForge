@@ -2,6 +2,8 @@
 
 **Current verdict: NOT READY.** The local game and evidence are implemented; account-dependent acceptance gates remain.
 
+Updated audit: [JUDGE_READINESS.md](../docs/JUDGE_READINESS.md). Runnable repository access is allowed by the rules; separate public hosting is recommended, not an explicit gate. Required remaining items are personal eligibility, authentic public YouTube footage and final submission. Fresh live rehearsal of the audit upgrades remains advised.
+
 Deadline: **November 2, 2026 at 2 p.m. PST / 5 p.m. EST / 22:00 UTC**. Confirm the latest official rules immediately before submitting.
 
 - [x] Project created from an empty repository during the submission period
@@ -19,7 +21,7 @@ Deadline: **November 2, 2026 at 2 p.m. PST / 5 p.m. EST / 22:00 UTC**. Confirm t
 - [x] A real chat vote reaches the backend and changes the game (one explicitly authorized broadcaster test vote; independent-viewer playtest still pending)
 - [ ] Real-account disconnect, refresh and reconnect behavior verified
 - [x] Docker image/Compose runtime and persistent evidence exercised on [CI](https://github.com/leninathikam/CrowdForge/actions/runs/41215265874)
-- [ ] Persistent public host configured, deployed and tested at its real URL
+- [ ] Recommended: public host configured and tested (runnable repository is the allowed alternative access route)
 - [x] [Public source pushed](https://github.com/leninathikam/CrowdForge); public visibility and unauthenticated HTTP 200 verified
 - [ ] Public YouTube demo under three minutes recorded and verified
 - [ ] Final story updated with the measured live run and verified links

@@ -1,7 +1,8 @@
 {
   "schema": 1,
+  "rules": 2,
   "seed": 1847,
-  "round_id": "970fb592bf9f41cea40f7e29a9b8230a",
+  "round_id": "37e9edcd54d14264ab36cf5630334e80",
   "allow_changes": true,
   "commands": [
     {
@@ -12,24 +13,6 @@
       "op": "move",
       "dx": 1,
       "dy": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
     },
     {
       "op": "tick",
@@ -60,12 +43,6 @@
     {
       "op": "tick",
       "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
       "winner": "lava",
       "votes": 1
     },
@@ -920,36 +897,30 @@
       "dt": 0.1,
       "winner": "lava",
       "votes": 1
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
     },
     {
       "op": "tick",
       "dt": 0.1,
-      "winner": null,
-      "votes": 0
+      "winner": "lava",
+      "votes": 1
     },
     {
       "op": "tick",
       "dt": 0.1,
-      "winner": null,
-      "votes": 0
+      "winner": "lava",
+      "votes": 1
     },
     {
       "op": "tick",
       "dt": 0.1,
-      "winner": null,
-      "votes": 0
+      "winner": "lava",
+      "votes": 1
     },
     {
       "op": "tick",
       "dt": 0.1,
-      "winner": null,
-      "votes": 0
+      "winner": "lava",
+      "votes": 1
     },
     {
       "op": "tick",
@@ -982,82 +953,17 @@
       "votes": 0
     },
     {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
+      "op": "mutation",
+      "proposal": {
+        "kind": "wall",
+        "targets": [
+          [
+            21,
+            2
+          ]
+        ]
+      },
+      "source": 0
     },
     {
       "op": "tick",
@@ -1073,13 +979,21 @@
     },
     {
       "op": "control",
-      "action": "freeze"
+      "action": "pause"
+    },
+    {
+      "op": "control",
+      "action": "resume"
     },
     {
       "op": "tick",
       "dt": 0.1,
       "winner": null,
       "votes": 0
+    },
+    {
+      "op": "control",
+      "action": "freeze"
     },
     {
       "op": "tick",
@@ -1248,63 +1162,9 @@
       "votes": 0
     },
     {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
       "op": "move",
       "dx": 0,
       "dy": -1
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
     },
     {
       "op": "tick",
@@ -1382,41 +1242,6 @@
       "votes": 0
     },
     {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "move",
-      "dx": 1,
-      "dy": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
       "op": "move",
       "dx": 1,
       "dy": 0
@@ -1526,12 +1351,6 @@
       "votes": 0
     },
     {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
       "op": "move",
       "dx": 1,
       "dy": 0
@@ -1570,6 +1389,23 @@
       "dt": 0.1,
       "winner": null,
       "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 1,
+      "dy": 0
     },
     {
       "op": "tick",
@@ -1610,12 +1446,6 @@
       "op": "move",
       "dx": 0,
       "dy": -1
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
     },
     {
       "op": "tick",
@@ -1722,29 +1552,6 @@
       "votes": 0
     },
     {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "move",
-      "dx": 1,
-      "dy": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
       "op": "move",
       "dx": 1,
       "dy": 0
@@ -1800,6 +1607,17 @@
       "dt": 0.1,
       "winner": null,
       "votes": 0
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
+      "op": "move",
+      "dx": 1,
+      "dy": 0
     },
     {
       "op": "tick",
@@ -1854,6 +1672,17 @@
       "votes": 0
     },
     {
+      "op": "move",
+      "dx": 0,
+      "dy": -1
+    },
+    {
+      "op": "tick",
+      "dt": 0.1,
+      "winner": null,
+      "votes": 0
+    },
+    {
       "op": "tick",
       "dt": 0.1,
       "winner": null,
@@ -1886,41 +1715,6 @@
       "op": "move",
       "dx": 0,
       "dy": -1
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
-    },
-    {
-      "op": "move",
-      "dx": 0,
-      "dy": -1
-    },
-    {
-      "op": "tick",
-      "dt": 0.1,
-      "winner": null,
-      "votes": 0
     },
     {
       "op": "tick",
@@ -1965,7 +1759,7 @@
   ],
   "audit": [
     {
-      "id": "970fb592bf9f41cea40f7e29a9b8230a:1",
+      "id": "37e9edcd54d14264ab36cf5630334e80:1",
       "window": 1,
       "kind": "lava",
       "targets": [
@@ -1992,7 +1786,65 @@
         "VALIDATING",
         "ACCEPTED",
         "APPLIED"
+      ],
+      "metrics": {
+        "before": {
+          "steps": 29,
+          "hazard_adjacent_tiles": 4,
+          "required_lava_tiles": 0
+        },
+        "after": {
+          "steps": 29,
+          "hazard_adjacent_tiles": 5,
+          "required_lava_tiles": 0
+        },
+        "path_delta": 0,
+        "minimum_escape_seconds": 6.3,
+        "remaining_seconds": 85
+      },
+      "changes": [
+        {
+          "x": 8,
+          "y": 13,
+          "before": 0,
+          "after": 2
+        },
+        {
+          "x": 9,
+          "y": 13,
+          "before": 0,
+          "after": 2
+        },
+        {
+          "x": 8,
+          "y": 14,
+          "before": 0,
+          "after": 2
+        }
       ]
+    },
+    {
+      "id": "37e9edcd54d14264ab36cf5630334e80:2",
+      "window": 0,
+      "kind": "wall",
+      "targets": [
+        [
+          21,
+          2
+        ]
+      ],
+      "accepted": false,
+      "reason": "Player and exit tiles are protected.",
+      "previous_version": 160,
+      "resulting_version": 160,
+      "timestamp": 15.5,
+      "protocol": [
+        "PROPOSED",
+        "VALIDATING",
+        "REJECTED"
+      ],
+      "metrics": null,
+      "changes": []
     }
   ],
   "final_vote_counts": {
@@ -2000,5 +1852,5 @@
     "wall": 0,
     "bridge": 0
   },
-  "digest": "0fdb2d468b9155688b279688acb861a45e11a682b97ca7ac06bba063bbeda357"
+  "digest": "ab3c136af62f278d6ac3ecbf77b4bf9d9e3bffe9e1d72a0601415f165189ef13"
 }

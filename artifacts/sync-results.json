@@ -1,0 +1,11 @@
+{
+  "observers": 8,
+  "synthetic_votes": 24,
+  "snapshot_checks": 209,
+  "synchronization_failures": 0,
+  "failure_details": [],
+  "post_to_all_observers_ms_median": 111.45,
+  "post_to_all_observers_ms_p95": 233.82,
+  "reconnect_ms": 20.72,
+  "limits": "One localhost session, eight read-only sockets, 24 synthetic votes, pause/reset/reconnect. No Twitch delivery, public internet, browser rendering or long soak."
+}

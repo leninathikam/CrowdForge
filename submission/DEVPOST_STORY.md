@@ -10,6 +10,8 @@ The streamer has 100 seconds to reach a portal in a small survival arena. Viewer
 
 The interesting part is the World Integrity Engine. It validates each proposal on a copy of the map and runs a breadth-first search before committing the change. If a mutation would remove the last route made of safe tiles, it is rejected with an explanation. It also protects the player, exit and boundaries, and keeps new lava away from the runner.
 
+The audited version also limits added detours and checks the route against an explicit remaining-time estimate. An optional diagnostics view exposes real transport counters, validation timings and before/after tiles, and reconstructs a paused round to verify its state and mutation history. It does not guarantee human survival or pretend that a route-adjacency metric predicts damage.
+
 ## How we built it
 
 React and TypeScript render a procedural canvas arena. A Python/FastAPI server owns the world, timer, movement and voting. Full versioned snapshots stream over WebSockets. The Twitch adapter uses the authorization code grant and EventSub channel.chat.message subscriptions. Tokens stay on the server, and votes are deduplicated and bounded per window.
@@ -28,9 +30,13 @@ Another challenge was handling network behavior honestly. EventSub reconnect han
 
 Browser testing also exposed a real input race: the first movement could arrive while the start request was still pending. Queuing the latest movement fixed that interaction.
 
+The audit found additional races: mode switches were missing from replay, and late POST responses could overwrite newer socket snapshots. Recorded window-reset inputs and a session-wide snapshot sequence now cover those cases; a delayed-response browser regression verifies that Pause is retained while movement is pending.
+
 ## Accomplishments and evidence
 
 The offline gameplay loop works, the production frontend builds, and a real authenticated broadcaster vote changed the arena through EventSub. Automated tests exercise the engine, API, mocked Twitch transport and browser. In 3,000 adversarial seeded scenarios, unrestricted terrain writes produced 694 states without a safe exit; constraint checking produced zero. This is a controlled safety comparison, not a live audience capacity claim. Current raw measurements and verification status are in the repository.
+
+The new independent-oracle evaluation compares identical proposals under unrestricted, original and upgraded policies. Across 1,800 intentionally adversarial cases, the original checker kept exits reachable but permitted 600 excessive-detour or time-budget outcomes; the upgraded policy permitted zero. It accepted only 9.78% of that hostile workload, so this is not a natural-play acceptance estimate. One hundred replay rounds and 209 checks with eight local observers produced zero mismatches. Final local checks passed 197 Python tests, 10 frontend tests and three browser scenarios.
 
 ## What we learned
 

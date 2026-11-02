@@ -10,9 +10,9 @@
     "invalid_mutations_accepted": 1820,
     "unreachable_exit_states": 694,
     "stability_errors": 0,
-    "latency_ms_median": 0.0027,
-    "latency_ms_p95": 0.0073,
-    "latency_ms_max": 0.0533
+    "latency_ms_median": 0.0152,
+    "latency_ms_p95": 0.0599,
+    "latency_ms_max": 0.7936
   },
   "crowdforge": {
     "successful_mutations": 1180,
@@ -20,41 +20,41 @@
     "invalid_mutations_accepted": 0,
     "unreachable_exit_states": 0,
     "stability_errors": 0,
-    "latency_ms_median": 0.0153,
-    "latency_ms_p95": 0.5551,
-    "latency_ms_max": 5.7166
+    "latency_ms_median": 0.0751,
+    "latency_ms_p95": 3.2667,
+    "latency_ms_max": 7.3235
   },
   "vote_workloads": [
     {
       "events": 1000,
       "accepted": 1000,
       "limited": 0,
-      "elapsed_seconds": 0.0276,
-      "events_per_second": 36167,
+      "elapsed_seconds": 0.0423,
+      "events_per_second": 23650,
       "python_heap_peak_bytes": 285050
     },
     {
       "events": 5000,
       "accepted": 5000,
       "limited": 0,
-      "elapsed_seconds": 0.1293,
-      "events_per_second": 38663,
-      "python_heap_peak_bytes": 1313530
+      "elapsed_seconds": 0.3269,
+      "events_per_second": 15297,
+      "python_heap_peak_bytes": 1313498
     },
     {
       "events": 20000,
       "accepted": 20000,
       "limited": 0,
-      "elapsed_seconds": 0.4731,
-      "events_per_second": 42276,
+      "elapsed_seconds": 1.0971,
+      "events_per_second": 18230,
       "python_heap_peak_bytes": 5280322
     },
     {
       "events": 50000,
       "accepted": 20000,
       "limited": 30000,
-      "elapsed_seconds": 0.9947,
-      "events_per_second": 50266,
+      "elapsed_seconds": 1.9718,
+      "events_per_second": 25357,
       "python_heap_peak_bytes": 5280523
     }
   ]
