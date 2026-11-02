@@ -2211,3 +2211,122 @@ kbd {
     scroll-behavior: auto !important;
   }
 }
+.proof-modal {
+  width: min(840px, calc(100vw - 32px));
+  max-width: 840px;
+}
+.forge-countdown {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #171a14ed;
+  border: 1px solid #f58c52;
+  border-radius: 6px;
+  color: #f7c7a8;
+  padding: 8px 14px;
+  font: 11px var(--mono);
+  white-space: nowrap;
+  pointer-events: none;
+}
+.forge-countdown b {
+  color: white;
+  font-size: 19px;
+  margin-left: 12px;
+}
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+.proof-grid > div {
+  border: 1px solid #394139;
+  background: #171e19;
+  border-radius: 8px;
+  padding: 13px;
+}
+.proof-grid dt {
+  color: #a8b3a6;
+  font-size: 11px;
+}
+.proof-grid dd {
+  margin: 7px 0 0;
+  color: #e4eddf;
+  font: 15px monospace;
+  overflow-wrap: anywhere;
+}
+.proof-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.replay-proof {
+  border-left: 3px solid #81d7bc;
+  padding: 14px;
+  background: #1c3027;
+  margin: 18px 0;
+}
+.replay-proof code {
+  display: block;
+  overflow-wrap: anywhere;
+  color: #bcecd6;
+  font-size: 11px;
+}
+.mutation-proof {
+  margin-top: 10px;
+  border: 1px solid #394139;
+  padding: 12px;
+  border-radius: 6px;
+}
+.mutation-proof summary {
+  cursor: pointer;
+  color: #e4eddf;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.mutation-proof > code {
+  display: block;
+  font-size: 10px;
+  overflow-wrap: anywhere;
+}
+.tile-diff {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.tile-diff > span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+}
+.tile-diff i {
+  padding: 5px;
+  border-radius: 3px;
+  font-style: normal;
+}
+.terrain-0 {
+  background: #294634;
+  color: #dbecdc;
+}
+.terrain-1 {
+  background: #47543e;
+  color: #fff;
+}
+.terrain-2 {
+  background: #973b22;
+  color: #ffdfb7;
+}
+.terrain-3 {
+  background: #6d542e;
+  color: #fff1d5;
+}
+@media (max-width: 600px) {
+  .proof-grid {
+    grid-template-columns: 1fr;
+  }
+  .proof-actions button {
+    width: 100%;
+  }
+}

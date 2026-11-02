@@ -1,6 +1,25 @@
 import { test, expect } from '@playwright/test';
 
+test('pause is retained while a movement response is delayed', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Enter the arena', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Pause', exact: true })).toBeEnabled();
+  await page.route('**/action', async route => {
+    if (route.request().postDataJSON()?.action === 'move') {
+      const response = await route.fetch();
+      await new Promise(resolve => setTimeout(resolve, 600)); // Deliberate delayed POST versus live socket.
+      await route.fulfill({ response });
+    } else await route.continue();
+  });
+  await page.getByTestId('arena').click();
+  await page.keyboard.press('ArrowRight');
+  await page.getByRole('button', { name: 'Pause', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Resume round', exact: true })).toBeVisible();
+  await expect(page.getByTestId('arena')).toHaveAttribute('aria-label', /Player at 3, 13/);
+});
+
 test('runner, audience, mutation, replay, overlay and reconnect form one working loop', async ({ page, context }) => {
+  test.setTimeout(120000); // Includes a real 15-second window, diagnostics, OBS and a full escape.
   const consoleErrors: string[] = [];
   page.on('pageerror', error => consoleErrors.push(error.message));
   await page.goto('/');
@@ -19,6 +38,19 @@ test('runner, audience, mutation, replay, overlay and reconnect form one working
   await page.getByRole('button', { name: 'Simulate lava vote', exact: true }).click();
   await expect(page.locator('.lava .option-bottom b')).toContainText('1');
   await expect(page.getByText('LAVA FORGED', { exact: true })).toBeVisible({ timeout: 18000 });
+  await page.getByRole('button', { name: 'Developer diagnostics' }).click();
+  await expect(page.getByRole('heading', { name: 'Show your work.' })).toBeVisible();
+  await expect(page.getByText('No live Twitch reception is claimed.', { exact: false })).toBeVisible();
+  await page.getByRole('button', { name: 'Test unsafe exit wall' }).click();
+  await page.getByRole('button', { name: 'Pause for replay proof' }).click();
+  await page.getByRole('button', { name: 'Verify deterministic replay' }).click();
+  await expect(page.getByText('REPLAY VERIFIED', { exact: true })).toBeVisible();
+  await page.locator('.mutation-proof summary').filter({ hasText: 'APPLIED' }).click();
+  await expect(page.getByLabel('Before and after terrain')).toBeVisible();
+  await page.screenshot({ path: 'artifacts/screenshots/diagnostics.png', fullPage: true });
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Resume round', exact: true }).click();
   await page.getByRole('button', { name: 'Freeze votes', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Simulate wall vote' })).toBeDisabled();
   await page.getByRole('button', { name: 'Unfreeze votes', exact: true }).click();
@@ -87,4 +119,15 @@ test('narrow layout, help, settings and connection setup remain usable', async (
   await page.setViewportSize({ width: 390, height: 844 });
   await page.screenshot({ path: 'artifacts/screenshots/mobile.png', fullPage: true });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBeTruthy();
+  await page.getByRole('button', { name: 'Inspect world integrity' }).click();
+  await expect(page.getByRole('heading', { name: 'Show your work.' })).toBeVisible();
+  await page.getByRole('button', { name: 'Verify deterministic replay' }).click();
+  await expect(page.getByText('REPLAY VERIFIED', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Close dialog' }).focus();
+  await page.keyboard.press('Shift+Tab');
+  await expect(page.getByRole('button', { name: 'Verify deterministic replay' })).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(page.getByRole('button', { name: 'Close dialog' })).toBeFocused();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBeTruthy();
+  await page.screenshot({ path: 'artifacts/screenshots/diagnostics-mobile.png', fullPage: true });
 });

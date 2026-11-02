@@ -15,6 +15,7 @@ import {
   Gamepad2,
   Layers3,
   Radio,
+  ShieldCheck,
   Settings2,
   Swords,
   Twitch,
@@ -37,7 +38,7 @@ function App() {
     replay,
   } = useGame();
   const [modal, setModal] = useState<
-    "help" | "settings" | "setup" | "overlay" | null
+    "help" | "settings" | "setup" | "overlay" | "diagnostics" | null
   >(null);
   const [sound, setSound] = useState(false);
   const [view, setView] = useState<"arena" | "events">("arena");
@@ -197,6 +198,13 @@ function App() {
           </div>
           <div className="rail-bottom">
             <button
+              aria-label="Developer diagnostics"
+              title="Developer diagnostics"
+              onClick={() => setModal("diagnostics")}
+            >
+              <ShieldCheck size={20} />
+            </button>
+            <button
               aria-label="Settings"
               title="Settings"
               onClick={() => setModal("settings")}
@@ -278,7 +286,12 @@ function App() {
               action={action}
               replay={replay}
             />
-            <VotingPanel state={state} overlay={overlay} action={action} />
+            <VotingPanel
+              state={state}
+              overlay={overlay}
+              action={action}
+              inspect={() => setModal("diagnostics")}
+            />
           </div>
           <section className="event-strip">
             <div>

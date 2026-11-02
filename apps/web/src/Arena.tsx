@@ -13,6 +13,8 @@ function render(
   state: State,
   frame: number,
   reduced: boolean,
+  visualPlayer: [number, number],
+  damageFlash: number,
 ) {
   const t = reduced ? 0 : frame / 1000;
   ctx.clearRect(0, 0, WIDTH, HEIGHT);
@@ -146,8 +148,8 @@ function render(
     ctx.fillStyle = "#ffdf8c";
     ctx.fillRect(x - 1, y - 12 + Math.floor(Math.sin(t * 6) * 2), 3, 9);
   }
-  const px = state.player[0] * TILE + 18,
-    py = state.player[1] * TILE + 17;
+  const px = visualPlayer[0] * TILE + 18,
+    py = visualPlayer[1] * TILE + 17;
   ctx.fillStyle = "#0b1d16";
   ctx.fillRect(px - 11, py + 11, 23, 7);
   ctx.fillStyle = "#d26239";
@@ -188,6 +190,11 @@ function render(
   vignette.addColorStop(1, "#080d0b8a");
   ctx.fillStyle = vignette;
   ctx.fillRect(0, 0, WIDTH, HEIGHT);
+  if (damageFlash > 0 && !reduced) {
+    ctx.strokeStyle = `rgba(255, 105, 65, ${damageFlash * 0.7})`;
+    ctx.lineWidth = 10;
+    ctx.strokeRect(5, 5, WIDTH - 10, HEIGHT - 10);
+  }
 }
 
 export default function Arena({ state }: { state: State }) {
@@ -199,8 +206,38 @@ export default function Arena({ state }: { state: State }) {
     if (!ctx) return;
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
     let frame = 0;
+    let target = current.current.player,
+      from = target,
+      movedAt = 0;
+    let health = current.current.health,
+      damagedAt = -1000;
     const draw = (time: number) => {
-      render(ctx, current.current, time, reduced);
+      const state = current.current;
+      if (target[0] !== state.player[0] || target[1] !== state.player[1]) {
+        from = target;
+        target = state.player;
+        movedAt = time;
+      }
+      if (state.health < health) damagedAt = time;
+      health = state.health;
+      const fraction =
+        reduced ||
+        state.phase !== "running" ||
+        Math.abs(target[0] - from[0]) + Math.abs(target[1] - from[1]) > 1
+          ? 1
+          : Math.min(1, (time - movedAt) / 90);
+      const position: [number, number] = [
+        from[0] + (target[0] - from[0]) * fraction,
+        from[1] + (target[1] - from[1]) * fraction,
+      ];
+      render(
+        ctx,
+        state,
+        time,
+        reduced,
+        position,
+        Math.max(0, 1 - (time - damagedAt) / 350),
+      );
       frame = requestAnimationFrame(draw);
     };
     frame = requestAnimationFrame(draw);

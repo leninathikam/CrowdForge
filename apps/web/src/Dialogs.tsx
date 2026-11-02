@@ -8,9 +8,11 @@ import {
   Users,
   X,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Diagnostics from "./Diagnostics";
 import type { State, Session, GameAction } from "./types";
-export type ModalKind = "help" | "settings" | "setup" | "overlay";
+export type ModalKind =
+  "help" | "settings" | "setup" | "overlay" | "diagnostics";
 interface Props {
   modal: ModalKind;
   state: State;
@@ -33,6 +35,38 @@ export default function Dialogs({
   setError,
   onClose,
 }: Props) {
+  const dialog = useRef<HTMLElement>(null);
+  const close = useRef(onClose);
+  close.current = onClose;
+  useEffect(() => {
+    const previous = document.activeElement as HTMLElement | null;
+    const keydown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        close.current();
+      }
+      if (event.key !== "Tab") return;
+      const elements = [
+        ...(dialog.current?.querySelectorAll<HTMLElement>(
+          'button:not(:disabled),a[href],input:not(:disabled),select,summary,[tabindex="0"]',
+        ) ?? []),
+      ];
+      const first = elements[0],
+        last = elements.at(-1);
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
+      }
+    };
+    document.addEventListener("keydown", keydown);
+    return () => {
+      document.removeEventListener("keydown", keydown);
+      previous?.focus();
+    };
+  }, []);
   const [copied, setCopied] = useState(false);
   const [seed, setSeed] = useState(String(state.seed));
   const [changes, setChanges] = useState(state.vote.allow_changes);
@@ -56,7 +90,8 @@ export default function Dialogs({
       }}
     >
       <section
-        className="modal"
+        ref={dialog}
+        className={`modal ${modal === "diagnostics" ? "proof-modal" : ""}`}
         role="dialog"
         aria-modal="true"
         aria-label={modal + " dialog"}
@@ -69,6 +104,9 @@ export default function Dialogs({
         >
           <X size={20} />
         </button>
+        {modal === "diagnostics" && (
+          <Diagnostics state={state} session={session} action={action} />
+        )}
         {modal === "help" && (
           <>
             <div className="eyebrow">RUNNER'S FIELD GUIDE</div>

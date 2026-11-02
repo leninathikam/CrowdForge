@@ -213,6 +213,7 @@ async def act(key: str, body: Action, request: Request):
         session.game = Game(game.seed, game.allow_changes)
         session.saved = False
         session.persisted_audits = 0
+        session.persistence_status = "not saved"
     elif body.action == "simulate":
         if session.mode != "simulation":
             raise HTTPException(409, "Synthetic votes are disabled while connected to Twitch.")

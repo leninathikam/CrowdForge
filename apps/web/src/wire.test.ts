@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { decodeSnapshot } from "./wire";
+import { decodeSnapshot, newestSnapshot } from "./wire";
 
 const fixture = () => ({
   schema: 1,
@@ -20,6 +20,32 @@ const fixture = () => ({
   mode: "simulation",
 });
 describe("versioned server snapshots", () => {
+  it("never rolls back a reset or vote snapshot when an older POST arrives", () => {
+    const current = decodeSnapshot({
+      ...fixture(),
+      snapshot_sequence: 20,
+      version: 0,
+      round_id: "new",
+    });
+    const older = decodeSnapshot({
+      ...fixture(),
+      snapshot_sequence: 19,
+      version: 500,
+      round_id: "old",
+    });
+    expect(newestSnapshot(current, older)).toBe(current);
+    const vote = decodeSnapshot({
+      ...fixture(),
+      snapshot_sequence: 21,
+      version: 0,
+    });
+    expect(newestSnapshot(current, vote)).toBe(vote);
+  });
+  it("rejects non-integer snapshot ordering", () => {
+    expect(() =>
+      decodeSnapshot({ ...fixture(), snapshot_sequence: NaN }),
+    ).toThrow("sequence");
+  });
   it("accepts a valid full state", () =>
     expect(decodeSnapshot(fixture()).player).toEqual([2, 13]));
   it("rejects an incompatible protocol", () =>

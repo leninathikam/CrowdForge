@@ -73,6 +73,14 @@ export default function ArenaPanel({
       </div>
       <div className="arena-wrap">
         <Arena state={state} />
+        {state.phase === "running" &&
+          !state.frozen &&
+          state.vote.total > 0 &&
+          state.vote.remaining <= 3 && (
+            <div className="forge-countdown" role="status">
+              CHAT IS FORGING <b>{Math.ceil(state.vote.remaining)}</b>
+            </div>
+          )}
         {view === "events" && !overlay && (
           <div className="timeline-view">
             <div className="eyebrow">AUDIENCE IMPACT REPLAY</div>
@@ -133,7 +141,7 @@ export default function ArenaPanel({
             </span>
           </div>
         )}
-      {state.phase === "paused" && view === "arena" && (
+        {state.phase === "paused" && view === "arena" && (
           <div className="arena-curtain paused">
             <Pause size={32} />
             <h2>The world can wait.</h2>

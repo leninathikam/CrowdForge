@@ -43,10 +43,12 @@ export default function VotingPanel({
   state,
   overlay,
   action,
+  inspect,
 }: {
   state: State;
   overlay: boolean;
   action: GameAction;
+  inspect?: () => void;
 }) {
   return (
     <aside className="vote-column">
@@ -123,13 +125,18 @@ export default function VotingPanel({
           <p>
             Every mutation is checked.
             <br />
-            There's always a safe way out.
+            Mutations preserve a lava-free route.
           </p>
         </div>
         <span className="integrity-check">
           <Check size={13} />
         </span>
       </section>
+      {!overlay && (
+        <button className="text-button integrity-inspect" onClick={inspect}>
+          Inspect world integrity
+        </button>
+      )}
       {!overlay && (
         <section className="simulation-panel">
           {state.mode === "simulation" ? (

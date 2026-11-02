@@ -1,10 +1,26 @@
 import type { State } from "./types";
 
+/** One session-wide sequence covers POSTs, socket messages and round resets. */
+export function newestSnapshot(current: State | null, next: State): State {
+  return current &&
+    current.snapshot_sequence !== undefined &&
+    next.snapshot_sequence !== undefined &&
+    next.snapshot_sequence < current.snapshot_sequence
+    ? current
+    : next;
+}
+
 /** Reject incompatible or corrupted snapshots before they reach the renderer. */
 export function decodeSnapshot(value: unknown): State {
   if (!value || typeof value !== "object")
     throw new Error("Missing world snapshot.");
   const state = value as State;
+  if (
+    state.snapshot_sequence !== undefined &&
+    (!Number.isSafeInteger(state.snapshot_sequence) ||
+      state.snapshot_sequence < 0)
+  )
+    throw new Error("Invalid snapshot sequence.");
   if (state.schema !== 1)
     throw new Error("Incompatible world schema. Reload the page.");
   if (!["ready", "running", "paused", "won", "lost"].includes(state.phase))

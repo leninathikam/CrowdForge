@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Session, State } from "./types";
-import { decodeSnapshot } from "./wire";
+import { decodeSnapshot, newestSnapshot } from "./wire";
 
 export const overlay = location.pathname === "/overlay";
 const params = new URLSearchParams(location.search);
@@ -24,6 +24,11 @@ export function useGame() {
   const socket = useRef<WebSocket | null>(null);
   const busy = useRef(false);
   const pendingMove = useRef<Record<string, unknown> | null>(null);
+  const pendingControls = useRef<
+    { action: string; extra: Record<string, unknown> }[]
+  >([]);
+  const activeSession = useRef<string | null>(null);
+  activeSession.current = session?.id ?? null;
 
   const create = useCallback(async (seed = 1847, allow_changes = true) => {
     const data = await request("/api/sessions", {
@@ -110,9 +115,10 @@ export function useGame() {
         setError("");
       };
       ws.onmessage = (message) => {
+        if (stopped || activeSession.current !== session!.id) return;
         try {
           const next = decodeSnapshot(JSON.parse(message.data));
-          setState(next);
+          setState((current) => newestSnapshot(current, next));
         } catch {
           setError("Could not read server state. Reload to synchronize.");
         }
@@ -146,6 +152,12 @@ export function useGame() {
       if (!session || overlay) return;
       if (busy.current) {
         if (action === "move") pendingMove.current = extra;
+        else if (pendingControls.current.length < 8)
+          pendingControls.current.push({ action, extra });
+        else
+          setError(
+            "Controls are still pending. Wait for the server to respond.",
+          );
         return;
       }
       busy.current = true;
@@ -155,11 +167,24 @@ export function useGame() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ action, ...extra }),
         });
-        setState(decodeSnapshot(data));
+        const next = decodeSnapshot(data);
+        if (activeSession.current === session.id)
+          setState((current) => newestSnapshot(current, next));
       } catch (failure) {
         setError((failure as Error).message);
       } finally {
         busy.current = false;
+        if (activeSession.current !== session.id) {
+          pendingControls.current = [];
+          pendingMove.current = null;
+          return;
+        }
+        const control = pendingControls.current.shift();
+        if (control) {
+          pendingMove.current = null;
+          void sendAction(control.action, control.extra);
+          return;
+        }
         const queued = pendingMove.current;
         pendingMove.current = null;
         if (queued) void sendAction("move", queued);

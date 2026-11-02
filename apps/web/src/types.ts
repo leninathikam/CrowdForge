@@ -20,8 +20,35 @@ export interface MutationEvent {
   previous_version: number;
   resulting_version: number;
   protocol: string[];
+  changes?: { x: number; y: number; before: number; after: number }[];
+  metrics?: {
+    before: { steps: number | null; hazard_adjacent_tiles: number };
+    after: { steps: number | null; hazard_adjacent_tiles: number };
+    path_delta: number | null;
+    minimum_escape_seconds: number;
+    remaining_seconds: number | null;
+  } | null;
 }
 export interface State {
+  round_id?: string;
+  snapshot_sequence?: number;
+  diagnostics?: {
+    rules: number;
+    validation_samples: number;
+    validation_ms_last: number | null;
+    validation_ms_p95: number | null;
+    vote_receipts: { accepted: number; ignored: number };
+    twitch: {
+      received: number;
+      delivered: number;
+      duplicates: number;
+      stale: number;
+      limited: number;
+      reconnects: number;
+      last_received_at: string | null;
+    } | null;
+    persistence: string;
+  };
   schema: number;
   version: number;
   seed: number;
