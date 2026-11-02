@@ -47,6 +47,8 @@ The upgraded Python suite passed **197 tests** on Python 3.14 and again on Pytho
 
 The first expanded browser run exposed an inaccessible mobile diagnostics button (hidden sidebar), now fixed with an integrity-panel entry. Its full gameplay scenario completed through reset but exceeded the former 60-second suite limit during final capture; the expanded integration scenario has a 120-second test budget. Assertions and the actual 15-second game vote window remain intact. Failures are not counted as passing evidence.
 
+The first remote upgrade run passed unit/build/Docker checks but caught a browser-test race: it sampled the timer immediately after clicking Pause, before the server acknowledgment. The test now waits for the visible paused state before measuring a stopped timer; it does not relax the timer assertion.
+
 Real Twitch evidence remains the earlier human-authorized broadcaster `!lava` vote applying three lava tiles, recorded in [LIVE_TWITCH_VERIFICATION.md](LIVE_TWITCH_VERIFICATION.md). The current adapter changes have automated mocked handoff/dedup/ping-option regression coverage. **No new live-account test, token-expiry soak, independent-viewer load, public deployment or OBS recording is inferred from those tests.**
 
 Synthetic aggregation microbenchmarks accept 20k and reject 30k inputs at the 50k workload cap, around 5.28MB traced Python heap. These are not connected-viewer counts or RSS measurements. The earlier short renderer sample remains historical; no new GPU or end-to-end frame-rate improvement is claimed from animation smoothing.

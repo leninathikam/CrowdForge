@@ -29,6 +29,7 @@ test('runner, audience, mutation, replay, overlay and reconnect form one working
   await page.keyboard.press('ArrowRight');
   await expect(page.getByTestId('arena')).toHaveAttribute('aria-label', /Player at 3, 13/);
   await page.getByRole('button', { name: 'Pause', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Resume round', exact: true })).toBeVisible();
   const paused = await page.getByTestId('round-timer').innerText();
   await page.waitForTimeout(500); // Explicitly verify the timer stays stopped during pause.
   await expect(page.getByTestId('round-timer')).toHaveText(paused);
